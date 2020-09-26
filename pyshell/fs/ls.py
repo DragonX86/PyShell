@@ -1,4 +1,4 @@
-import os
+import launcher
 import enum
 
 
@@ -23,13 +23,13 @@ class ListOfFiles:
             raise ValueError
 
         files = [
-            file for file in os.listdir(self.__path)
-            if os.path.isfile(os.path.join(self.__path, file))
+            file for file in launcher.listdir(self.__path)
+            if launcher.path.isfile(launcher.path.join(self.__path, file))
             if not file.startswith('.')
         ]
 
         if path_format == PathFormat.absolute:
-            return [os.path.join(self.__path, file) for file in files]
+            return [launcher.path.join(self.__path, file) for file in files]
         elif path_format == PathFormat.relative:
             return files
 
@@ -38,13 +38,13 @@ class ListOfFiles:
             raise ValueError
 
         files = [
-            file for file in os.listdir(self.__path)
-            if os.path.isfile(os.path.join(self.__path, file))
+            file for file in launcher.listdir(self.__path)
+            if launcher.path.isfile(launcher.path.join(self.__path, file))
             if file.startswith('.')
         ]
 
         if path_format == PathFormat.absolute:
-            return [os.path.join(self.__path, file) for file in files]
+            return [launcher.path.join(self.__path, file) for file in files]
         elif path_format == PathFormat.relative:
             return files
 
@@ -53,13 +53,13 @@ class ListOfFiles:
             raise ValueError
 
         folders = [
-            folder for folder in os.listdir(self.__path)
-            if os.path.isdir(os.path.join(self.__path, folder))
+            folder for folder in launcher.listdir(self.__path)
+            if launcher.path.isdir(launcher.path.join(self.__path, folder))
             if not folder.startswith('.')
         ]
 
         if path_format == PathFormat.absolute:
-            return [os.path.join(self.__path, folder) for folder in folders]
+            return [launcher.path.join(self.__path, folder) for folder in folders]
         elif path_format == PathFormat.relative:
             return folders
 
@@ -68,13 +68,13 @@ class ListOfFiles:
             raise ValueError
 
         folders = [
-            folder for folder in os.listdir(self.__path)
-            if os.path.isdir(os.path.join(self.__path, folder))
+            folder for folder in launcher.listdir(self.__path)
+            if launcher.path.isdir(launcher.path.join(self.__path, folder))
             if folder.startswith('.')
         ]
 
         if path_format == PathFormat.absolute:
-            return [os.path.join(self.__path, folder) for folder in folders]
+            return [launcher.path.join(self.__path, folder) for folder in folders]
         elif path_format == PathFormat.relative:
             return folders
 
@@ -83,13 +83,13 @@ class ListOfFiles:
             raise ValueError
 
         links = [
-            link for link in os.listdir(self.__path)
-            if os.path.isdir(os.path.join(self.__path, link))
+            link for link in launcher.listdir(self.__path)
+            if launcher.path.isdir(launcher.path.join(self.__path, link))
             if not link.startswith('.')
         ]
 
         if path_format == PathFormat.absolute:
-            return [os.path.join(self.__path, link) for link in links]
+            return [launcher.path.join(self.__path, link) for link in links]
         elif path_format == PathFormat.relative:
             return links
 
@@ -98,12 +98,12 @@ class ListOfFiles:
             raise ValueError
 
         links = [
-            link for link in os.listdir(self.__path)
-            if os.path.isdir(os.path.join(self.__path, link))
+            link for link in launcher.listdir(self.__path)
+            if launcher.path.isdir(launcher.path.join(self.__path, link))
             if link.startswith('.')
         ]
 
         if path_format == PathFormat.absolute:
-            return [os.path.join(self.__path, link) for link in links]
+            return [launcher.path.join(self.__path, link) for link in links]
         elif path_format == PathFormat.relative:
             return links
