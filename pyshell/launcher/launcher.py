@@ -1,25 +1,18 @@
-import enum
+from .current_os_enum import CurrentOS
 from .different_os.linux_gnome import LinuxGnome
+from .abstract_os import AbstractOS
 
 
-class TypeOS(enum.Enum):
-    linux_gnome = 0
-    linux_kde = 1
-    windows_10 = 2
-    windows_7 = 3
-    default = 99
-
-
-class Launcher:
-    def __init__(self, type_os: TypeOS = TypeOS.default):
-        if isinstance(type_os, TypeOS):
-            if type_os == TypeOS.linux_gnome:
+class Launcher(AbstractOS):
+    def __init__(self, type_os: CurrentOS = CurrentOS.default):
+        if isinstance(type_os, CurrentOS):
+            if type_os == CurrentOS.linux_gnome:
                 self.__os = LinuxGnome()
-            elif type_os == TypeOS.linux_gnome:
+            elif type_os == CurrentOS.linux_gnome:
                 pass
-            elif type_os == TypeOS.windows_10:
+            elif type_os == CurrentOS.windows_10:
                 pass
-            elif type_os == TypeOS.windows_7:
+            elif type_os == CurrentOS.windows_7:
                 pass
 
         else:
@@ -27,3 +20,12 @@ class Launcher:
 
     def note(self):
         self.__os.note()
+
+    def calc(self):
+        self.__os.calc()
+
+    def browser(self):
+        self.__os.browser()
+
+    def filemanager(self):
+        self.__os.filemanager()

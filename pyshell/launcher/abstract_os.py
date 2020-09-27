@@ -9,3 +9,11 @@ class AbstractOS(ABC):
     @abstractmethod
     def calc(self):
         pass
+
+    @abstractmethod
+    def browser(self):
+        pass
+
+    @abstractmethod
+    def filemanager(self):
+        pass
