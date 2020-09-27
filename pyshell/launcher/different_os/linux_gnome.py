@@ -1,5 +1,5 @@
 import subprocess
-from .abstract_os import AbstractOS
+from launcher.abstract_os import AbstractOS
 
 
 class LinuxGnome(AbstractOS):
