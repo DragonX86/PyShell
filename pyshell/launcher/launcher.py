@@ -1,20 +1,22 @@
-from .current_os_enum import CurrentOS
-from .different_os.linux_gnome import LinuxGnome
+import os
+from .linux.linux_gnome import LinuxGnome
+from .linux.linux_kde import LinuxKde
+from .windows.windos_ten import WindowsTen
+from .windows.windows_seven import WindowsSeven
 from .abstract_os import AbstractOS
 
 
 class Launcher(AbstractOS):
-    def __init__(self, type_os: CurrentOS = CurrentOS.default):
-        if isinstance(type_os, CurrentOS):
-            if type_os == CurrentOS.linux_gnome:
+    def __init__(self):
+        if 'CURRENT_OS' in os.environ:
+            if os.environ['CURRENT_OS'] == 'LINUX_GNOME':
                 self.__os = LinuxGnome()
-            elif type_os == CurrentOS.linux_gnome:
-                pass
-            elif type_os == CurrentOS.windows_10:
-                pass
-            elif type_os == CurrentOS.windows_7:
-                pass
-
+            elif os.environ['CURRENT_OS'] == 'LINUX_KDE':
+                self.__os = LinuxKde()
+            elif os.environ['CURRENT_OS'] == 'WINDOWS_10':
+                self.__os = WindowsTen()
+            elif os.environ['CURRENT_OS'] == 'WINDOWS_7':
+                self.__os = WindowsSeven()
         else:
             raise ValueError
 
