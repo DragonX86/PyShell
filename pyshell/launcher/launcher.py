@@ -1,9 +1,7 @@
 import os
-from .linux.linux_gnome import LinuxGnome
-from .linux.linux_kde import LinuxKde
-from .windows.windos_ten import WindowsTen
-from .windows.windows_seven import WindowsSeven
 from .abstract_os import AbstractOS
+from .linux import LinuxGnome, LinuxKde
+from .windows import Windows
 
 
 class Launcher(AbstractOS):
@@ -13,10 +11,8 @@ class Launcher(AbstractOS):
                 self.__os = LinuxGnome()
             elif os.environ['CURRENT_OS'] == 'LINUX_KDE':
                 self.__os = LinuxKde()
-            elif os.environ['CURRENT_OS'] == 'WINDOWS_10':
-                self.__os = WindowsTen()
-            elif os.environ['CURRENT_OS'] == 'WINDOWS_7':
-                self.__os = WindowsSeven()
+            elif os.environ['CURRENT_OS'] == 'WINDOWS':
+                self.__os = Windows()
         else:
             raise ValueError
 

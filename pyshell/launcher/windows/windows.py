@@ -1,8 +1,10 @@
 import subprocess
-from launcher.abstract_os import AbstractOS
+import webbrowser
+
+from ..abstract_os import AbstractOS
 
 
-class WindowsTen(AbstractOS):
+class Windows(AbstractOS):
     def note(self):
         subprocess.Popen('notepad.exe')
 
@@ -10,7 +12,7 @@ class WindowsTen(AbstractOS):
         subprocess.Popen('calc.exe')
 
     def browser(self):
-        pass
+        webbrowser.open("https://yandex.ru/")
 
     def filemanager(self):
         subprocess.Popen('explorer.exe')

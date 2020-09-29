@@ -1,6 +1,6 @@
 import os
 import platform
-from launcher.launcher import Launcher
+from launcher import Launcher
 
 
 def define_os():
@@ -18,11 +18,11 @@ def define_os():
             os.environ['CURRENT_OS'] = 'LINUX_KDE'
     elif os_type == 'Windows':
         windows_rls = platform.release()
-        print(windows_rls)
+
         if windows_rls == '10':
-            os.environ['CURRENT_OS'] = 'WINDOWS_10'
+            os.environ['CURRENT_OS'] = 'WINDOWS'
         elif windows_rls == '7':
-            os.environ['CURRENT_OS'] = 'WINDOWS_7'
+            os.environ['CURRENT_OS'] = 'WINDOWS'
         elif windows_rls == 'XP':
             os.environ['CURRENT_OS'] = 'WINDOWS_XP'
 
@@ -31,7 +31,6 @@ if __name__ == '__main__':
     define_os()
     launcher = Launcher()
 
-
     while True:
         command = input('shell> ')
 
@@ -39,6 +38,8 @@ if __name__ == '__main__':
             launcher.note()
         elif command == 'calc':
             launcher.calc()
+        elif command == 'browser':
+            launcher.browser()
         elif command == 'filemanager':
             launcher.filemanager()
         else:

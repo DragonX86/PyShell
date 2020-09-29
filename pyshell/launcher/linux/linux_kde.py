@@ -1,5 +1,5 @@
 import subprocess
-from launcher.abstract_os import AbstractOS
+from ..abstract_os import AbstractOS
 
 
 class LinuxKde(AbstractOS):
