@@ -1,35 +1,25 @@
-import os
-import platform
+import readline
 from launcher import Launcher
+from utils import define_os
+
+COMMANDS = ['note', 'calc', 'browser', 'filemanager', 'taskmanager', 'exit']
 
 
-def define_os():
-    os_type = platform.system()
-
-    if os_type == 'Linux':
-        # Можно использовать DESKTOP_SESSION,
-        # XDG_SESSION_DESKTOP и XDG_CURRENT_DESKTOP
-        # т.к это практически одно и то же.
-        linux_de = os.environ['XDG_CURRENT_DESKTOP']
-
-        if linux_de == 'GNOME':
-            os.environ['CURRENT_OS'] = 'LINUX_GNOME'
-        elif linux_de == 'KDE':
-            os.environ['CURRENT_OS'] = 'LINUX_KDE'
-    elif os_type == 'Windows':
-        windows_rls = platform.release()
-
-        if windows_rls == '10':
-            os.environ['CURRENT_OS'] = 'WINDOWS'
-        elif windows_rls == '7':
-            os.environ['CURRENT_OS'] = 'WINDOWS'
-        elif windows_rls == 'XP':
-            os.environ['CURRENT_OS'] = 'WINDOWS_XP'
+def complete(text, state):
+    for cmd in COMMANDS:
+        if cmd.startswith(text):
+            if not state:
+                return cmd
+            else:
+                state -= 1
 
 
 if __name__ == '__main__':
     define_os()
     launcher = Launcher()
+
+    readline.parse_and_bind('tab: complete')
+    readline.set_completer(complete)
 
     while True:
         command = input('shell> ')
@@ -42,5 +32,7 @@ if __name__ == '__main__':
             launcher.browser()
         elif command == 'filemanager':
             launcher.filemanager()
+        elif command == 'taskmanager':
+            launcher.taskmanager()
         else:
             break

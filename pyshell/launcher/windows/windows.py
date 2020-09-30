@@ -16,3 +16,6 @@ class Windows(AbstractOS):
 
     def filemanager(self):
         subprocess.Popen('explorer.exe')
+
+    def taskmanager(self):
+        subprocess.Popen('Taskmgr.exe')

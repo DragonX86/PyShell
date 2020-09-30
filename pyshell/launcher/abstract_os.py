@@ -17,3 +17,7 @@ class AbstractOS(ABC):
     @abstractmethod
     def filemanager(self):
         pass
+
+    @abstractmethod
+    def taskmanager(self):
+        pass

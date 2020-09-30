@@ -27,3 +27,10 @@ class LinuxGnome(AbstractOS):
             stdout=subprocess.DEVNULL,
             stderr=subprocess.DEVNULL
         )
+
+    def taskmanager(self):
+        subprocess.Popen(
+            'gnome-system-monitor',
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL
+        )

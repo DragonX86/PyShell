@@ -27,3 +27,6 @@ class Launcher(AbstractOS):
 
     def filemanager(self):
         self.__os.filemanager()
+
+    def taskmanager(self):
+        self.__os.taskmanager()
