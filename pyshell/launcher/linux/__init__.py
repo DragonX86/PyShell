@@ -1,2 +1,2 @@
 from .linux_gnome import LinuxGnome
-from .linux_kde import LinuxKde
+from .linux_kde import LinuxKDE

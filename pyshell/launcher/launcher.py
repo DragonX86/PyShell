@@ -1,20 +1,32 @@
 import os
+import platform
+
 from .abstract_os import AbstractOS
-from .linux import LinuxGnome, LinuxKde
+from .linux import LinuxGnome, LinuxKDE
 from .windows import Windows
 
 
 class Launcher(AbstractOS):
     def __init__(self):
-        if 'CURRENT_OS' in os.environ:
-            if os.environ['CURRENT_OS'] == 'LINUX_GNOME':
+        os_type = platform.system()
+
+        if os_type == 'Linux':
+            # Можно использовать DESKTOP_SESSION,
+            # XDG_SESSION_DESKTOP и XDG_CURRENT_DESKTOP
+            # т.к это практически одно и то же.
+            linux_de = os.environ['XDG_CURRENT_DESKTOP']
+
+            if linux_de == 'GNOME':
                 self.__os = LinuxGnome()
-            elif os.environ['CURRENT_OS'] == 'LINUX_KDE':
-                self.__os = LinuxKde()
-            elif os.environ['CURRENT_OS'] == 'WINDOWS':
+            elif linux_de == 'KDE':
+                self.__os = LinuxKDE()
+        elif os_type == 'Windows':
+            windows_rls = platform.release()
+
+            if windows_rls == '10' or windows_rls == '7':
                 self.__os = Windows()
-        else:
-            raise ValueError
+            # elif windows_rls == 'XP':
+                # self.__os = WindowsXP()
 
     def note(self):
         self.__os.note()
@@ -28,5 +40,5 @@ class Launcher(AbstractOS):
     def filemanager(self):
         self.__os.filemanager()
 
-    def taskmanager(self):
-        self.__os.taskmanager()
+    def sysmonitor(self):
+        self.__os.sysmonitor()

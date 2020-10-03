@@ -19,5 +19,5 @@ class AbstractOS(ABC):
         pass
 
     @abstractmethod
-    def taskmanager(self):
+    def sysmonitor(self):
         pass

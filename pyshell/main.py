@@ -1,8 +1,7 @@
 import readline
 from launcher import Launcher
-from utils import define_os
 
-COMMANDS = ['note', 'calc', 'browser', 'filemanager', 'taskmanager', 'exit']
+COMMANDS = ['note', 'calc', 'browser', 'filemanager', 'sysmonitor', 'exit']
 
 
 def complete(text, state):
@@ -15,7 +14,6 @@ def complete(text, state):
 
 
 if __name__ == '__main__':
-    define_os()
     launcher = Launcher()
 
     readline.parse_and_bind('tab: complete')
@@ -32,7 +30,7 @@ if __name__ == '__main__':
             launcher.browser()
         elif command == 'filemanager':
             launcher.filemanager()
-        elif command == 'taskmanager':
-            launcher.taskmanager()
+        elif command == 'sysmonitor':
+            launcher.sysmonitor()
         else:
             break

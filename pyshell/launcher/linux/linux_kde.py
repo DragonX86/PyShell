@@ -2,7 +2,10 @@ import subprocess
 from ..abstract_os import AbstractOS
 
 
-class LinuxKde(AbstractOS):
+class LinuxKDE(AbstractOS):
+    def sysmonitor(self):
+        pass
+
     def note(self):
         pass
 
