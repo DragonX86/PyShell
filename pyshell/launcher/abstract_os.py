@@ -3,11 +3,11 @@ from abc import ABC, abstractmethod
 
 class AbstractOS(ABC):
     @abstractmethod
-    def note(self):
+    def notepad(self):
         pass
 
     @abstractmethod
-    def calc(self):
+    def calculator(self):
         pass
 
     @abstractmethod
@@ -20,4 +20,8 @@ class AbstractOS(ABC):
 
     @abstractmethod
     def sysmonitor(self):
+        pass
+
+    @abstractmethod
+    def execute(self):
         pass

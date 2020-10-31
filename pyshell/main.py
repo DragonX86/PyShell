@@ -1,7 +1,9 @@
+import os
 import readline
+
 from launcher import Launcher
 
-COMMANDS = ['note', 'calc', 'browser', 'filemanager', 'sysmonitor', 'exit']
+COMMANDS = ['notepad', 'calculator', 'browser', 'filemanager', 'sysmonitor', 'execute', 'exit']
 
 
 def complete(text, state):
@@ -20,17 +22,11 @@ if __name__ == '__main__':
     readline.set_completer(complete)
 
     while True:
-        command = input('shell> ')
+        command = input('shell> ').split(' ')
 
-        if command == 'note':
-            launcher.note()
-        elif command == 'calc':
-            launcher.calc()
-        elif command == 'browser':
-            launcher.browser()
-        elif command == 'filemanager':
-            launcher.filemanager()
-        elif command == 'sysmonitor':
-            launcher.sysmonitor()
+        if command[0] != 'exit':
+            if len(command) > 1:
+                os.environ['COMMAND_ARG'] = command[1]
+            launcher.dispatch(command[0])
         else:
-            break
+            exit(0)

@@ -5,10 +5,10 @@ from ..abstract_os import AbstractOS
 
 
 class Windows(AbstractOS):
-    def note(self):
+    def notepad(self):
         subprocess.Popen('notepad.exe')
 
-    def calc(self):
+    def calculator(self):
         subprocess.Popen('calc.exe')
 
     def browser(self):
@@ -19,3 +19,6 @@ class Windows(AbstractOS):
 
     def sysmonitor(self):
         subprocess.Popen('Taskmgr.exe')
+
+    def execute(self):
+        pass

@@ -2,37 +2,30 @@ import os
 import platform
 
 from .abstract_os import AbstractOS
-from .linux import LinuxGnome, LinuxKDE
+from .linux import Gnome
 from .windows import Windows
 
 
 class Launcher(AbstractOS):
     def __init__(self):
-        os_type = platform.system()
-
-        if os_type == 'Linux':
-            # Можно использовать DESKTOP_SESSION,
-            # XDG_SESSION_DESKTOP и XDG_CURRENT_DESKTOP
-            # т.к это практически одно и то же.
+        if platform.system() == 'Linux':
             linux_de = os.environ['XDG_CURRENT_DESKTOP']
 
             if linux_de == 'GNOME':
-                self.__os = LinuxGnome()
-            elif linux_de == 'KDE':
-                self.__os = LinuxKDE()
-        elif os_type == 'Windows':
+                self.__os = Gnome()
+            # elif linux_de == 'KDE':
+            #     self.__os = LinuxKDE()
+        elif platform.system() == 'Windows':
             windows_rls = platform.release()
 
             if windows_rls == '10' or windows_rls == '7':
                 self.__os = Windows()
-            # elif windows_rls == 'XP':
-                # self.__os = WindowsXP()
 
-    def note(self):
-        self.__os.note()
+    def notepad(self):
+        self.__os.notepad()
 
-    def calc(self):
-        self.__os.calc()
+    def calculator(self):
+        self.__os.calculator()
 
     def browser(self):
         self.__os.browser()
@@ -42,3 +35,11 @@ class Launcher(AbstractOS):
 
     def sysmonitor(self):
         self.__os.sysmonitor()
+
+    def execute(self):
+        self.__os.execute()
+
+    def dispatch(self, value):
+        method_name = str(value)
+        method = getattr(self, method_name)
+        method()
