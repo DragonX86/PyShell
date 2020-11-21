@@ -39,11 +39,7 @@ class Gnome(AbstractOS):
         )
 
     def execute(self):
-        if exist_program(os.environ.get('COMMAND_ARG')):
-            subprocess.Popen(
-                os.environ.get('COMMAND_ARG'),
-                stdout=subprocess.DEVNULL,
-                stderr=subprocess.DEVNULL
-            )
+        if exist_program(os.environ.get('COMMAND')):
+            os.system(os.environ.get('COMMAND') + " " + os.environ.get('ARGS'))
         else:
             print('Программы не существует')

@@ -26,7 +26,14 @@ if __name__ == '__main__':
 
         if command[0] != 'exit':
             if len(command) > 1:
-                os.environ['COMMAND_ARG'] = command[1]
+                c = 2
+                text_command = ""
+                while c < len(command):
+                    text_command += command[c] + " "
+                    c += 1
+
+                os.environ['COMMAND'] = command[1]
+                os.environ['ARGS'] = text_command
             launcher.dispatch(command[0])
         else:
             exit(0)
