@@ -39,7 +39,12 @@ class Gnome(AbstractOS):
         )
 
     def execute(self):
-        if exist_program(os.environ.get('COMMAND')):
-            os.system(os.environ.get('COMMAND') + " " + os.environ.get('ARGS'))
-        else:
-            print('Программы не существует')
+        try:
+            if exist_program(os.environ.get('COMMAND')):
+                os.system(os.environ.get('COMMAND') + " " + os.environ.get('ARGS'))
+            else:
+                print('Такой программы не существует')
+        except ValueError:
+            print('аргумент не был переданн')
+
+        
